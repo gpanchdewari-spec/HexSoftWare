@@ -2,10 +2,12 @@
   "name": "hexsoftwares-premium-mern",
   "private": true,
   "scripts": {
-    "install-all": "npm --prefix backend install && npm --prefix frontend install",
+    "postinstall": "npm --prefix backend install && npm --prefix frontend install --include=dev",
     "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
     "build": "npm --prefix frontend run build",
     "seed": "npm --prefix backend run seed"
   },
-  "devDependencies": {"concurrently": "^9.1.2"}
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
