@@ -6,20 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  margin: 0;
+  margin-top: 20px;
   background: #ffffff;
   color: #1a1a1a;
   font-family: Inter, sans-serif;
 }
-.display {
-  font-family: Manrope, sans-serif;
-}
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(21, 101, 192, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(21, 101, 192, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-.soft-card {
-  box-shadow: 0 20px 60px rgba(26, 26, 26, 0.08);
-}
+

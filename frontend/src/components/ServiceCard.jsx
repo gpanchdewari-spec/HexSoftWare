@@ -5,7 +5,7 @@ export default function ServiceCard({ item }) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="rounded-3xl border border-black/5 bg-green-100 p-7 soft-card"
+      className="rounded-3xl border border-black/5 bg-white p-7 soft-card"
     >
       <div className="text-xs font-bold text-brand-green mb-8">
         {item.number || "CAPABILITY"}

@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
+import HomeTopBars from "./components/home/HomeTopBars";
+import "./components/home/home-shell.css";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -25,11 +27,13 @@ function Shell() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [l.pathname]);
+  const isHome = l.pathname === "/";
   const admin = l.pathname.startsWith("/admin");
   return (
-    <>
-      {!admin && <Navbar />}
-      {!admin && <WelcomePopup />}
+    <div className={isHome ? "home-shell" : undefined}>
+      {isHome && <HomeTopBars />}
+      {!admin && (isHome ? <div className="home-navbar"><Navbar /></div> : <Navbar />)}
+      {!admin && !isHome && <WelcomePopup />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -80,7 +84,7 @@ function Shell() {
       </Routes>
       {!admin && <Footer />}
       {!admin && <BackToTop />}
-    </>
+    </div>
   );
 }
 export default function App() {

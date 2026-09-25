@@ -1,79 +1,216 @@
 import { Link } from "react-router-dom";
-import { FiArrowUpRight } from "react-icons/fi";
+
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiLinkedin,
+  FiInstagram,
+  FiYoutube,
+  FiGithub,
+  FiArrowUpRight,
+} from "react-icons/fi";
+
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <>
-      <section className="mx-5 mb-5 rounded-[2rem] bg-gradient-to-br from-brand-blue to-brand-green text-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:flex items-end justify-between gap-10">
+    <footer className="relative overflow-hidden bg-[#020817] text-white">
+      {/* background effects */}
+      <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-blue-600/10 blur-[120px]" />
+
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-emerald-500/10 blur-[120px]" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
+        {/* Main Footer */}
+        <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr]">
+          {/* Brand */}
           <div>
-            <p className="uppercase tracking-[.25em] text-xs font-bold mb-4">
-              Start a conversation
-            </p>
-            <h2 className="display text-4xl md:text-6xl font-extrabold max-w-3xl">
-              Have an idea? Let's build something remarkable.
-            </h2>
-          </div>
-          <Link
-            className="mt-8 md:mt-0 inline-flex rounded-full bg-white text-brand-ink px-6 py-4 font-bold items-center gap-2"
-            to="/contact"
-          >
-            Start your project <FiArrowUpRight />
-          </Link>
-        </div>
-      </section>
-      <footer className="bg-brand-ink text-white">
-        <div className="mx-auto max-w-7xl px-6 py-14 grid md:grid-cols-4 gap-10">
-          <div>
-            <div className="display text-2xl font-extrabold">
-              <span className="text-brand-lime">HEX</span> SOFTWARES
-            </div>
-            <p className="mt-4 text-white/60">
-              Engineering digital experiences for ambitious businesses.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Company</h4>
-            <div className="space-y-2 text-white/60">
-              <Link className="block" to="/about">
-                About
-              </Link>
-              <Link className="block" to="/careers">
-                Careers
-              </Link>
-              <Link className="block" to="/portfolio">
-                Portfolio
-              </Link>
-            </div>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Services</h4>
-            <p className="text-white/60">
-              Web Development
-              <br />
-              Mobile Apps
-              <br />
-              AI Solutions
-              <br />
-              Cloud & SaaS
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Resources</h4>
-            <Link className="block text-white/60" to="/internships">
-              Internships
+            <Link to="/" className="inline-flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/10 font-black text-blue-400">
+                &lt;/&gt;
+              </div>
+
+              <div>
+                <h2 className="text-xl font-black tracking-wide">
+                  HEXSOFTWARES
+                </h2>
+
+                <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                  Building Technology. Building Futures.
+                </p>
+              </div>
             </Link>
-            <Link
-              className="block text-white/60 mt-2"
-              to="/certificate-verification"
-            >
+
+            <p className="mt-5 max-w-xs text-sm leading-7 text-white/50">
+              Building digital solutions for businesses and creating
+              opportunities for the next generation of tech professionals.
+            </p>
+
+            {/* Socials */}
+            <div className="mt-6 flex items-center gap-2">
+              <SocialLink href="https://linkedin.com" label="LinkedIn">
+                <FiLinkedin />
+              </SocialLink>
+
+              <SocialLink href="https://instagram.com" label="Instagram">
+                <FiInstagram />
+              </SocialLink>
+
+              <SocialLink href="https://youtube.com" label="YouTube">
+                <FiYoutube />
+              </SocialLink>
+
+              <SocialLink href="https://github.com" label="GitHub">
+                <FiGithub />
+              </SocialLink>
+            </div>
+          </div>
+
+          {/* Solutions */}
+          <FooterColumn title="Solutions">
+            <FooterLink to="/services">Web Development</FooterLink>
+
+            <FooterLink to="/services">App Development</FooterLink>
+
+            <FooterLink to="/services">Custom Software</FooterLink>
+
+            <FooterLink to="/services">AI & Automation</FooterLink>
+
+            <FooterLink to="/services">Cloud & SaaS</FooterLink>
+
+            <FooterLink to="/services">UI/UX Design</FooterLink>
+          </FooterColumn>
+
+          {/* Careers */}
+          <FooterColumn title="Careers">
+            <FooterLink to="/internships">Internships</FooterLink>
+
+            <FooterLink to="/careers">Jobs & Opportunities</FooterLink>
+
+            <FooterLink to="/certificate-verification">
               Certificate Verification
+            </FooterLink>
+
+            <FooterLink to="/login">Student Login</FooterLink>
+          </FooterColumn>
+
+          {/* Company */}
+          <FooterColumn title="Company">
+            <FooterLink to="/about">About Us</FooterLink>
+
+            <FooterLink to="/portfolio">Portfolio</FooterLink>
+
+            <FooterLink to="/services">Services</FooterLink>
+
+            <FooterLink to="/contact">Contact Us</FooterLink>
+          </FooterColumn>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-sm font-black">Contact Us</h4>
+
+            <div className="mt-5 space-y-4">
+              <ContactItem
+                icon={FiMail}
+                href="mailto:info@hexsoftwares.com"
+                text="info@hexsoftwares.com"
+              />
+
+              <ContactItem
+                icon={FiPhone}
+                href="tel:+918052432951"
+                text="+91 80524 32951"
+              />
+
+              <div className="flex items-start gap-3 text-sm text-white/50">
+                <FiMapPin className="mt-1 shrink-0 text-blue-400" />
+
+                <span>
+                  Kanpur, Uttar Pradesh
+                  <br />
+                  India
+                </span>
+              </div>
+            </div>
+
+            <Link
+              to="/contact"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-blue-400 transition hover:text-blue-300"
+            >
+              Contact our team
+              <FiArrowUpRight />
             </Link>
           </div>
         </div>
-        <div className="border-t border-white/10 px-6 py-6 text-center text-sm text-white/50">
-          © HexSoftwares. All Rights Reserved.
+
+        {/* Bottom */}
+        <div className="flex flex-col gap-5 border-t border-white/10 py-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
+          <p>© {year} HexSoftwares. All Rights Reserved.</p>
+
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link to="/privacy-policy" className="transition hover:text-white">
+              Privacy Policy
+            </Link>
+
+            <Link to="/terms" className="transition hover:text-white">
+              Terms & Conditions
+            </Link>
+
+            <Link to="/refund-policy" className="transition hover:text-white">
+              Refund Policy
+            </Link>
+          </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
+  );
+}
+
+function FooterColumn({ title, children }) {
+  return (
+    <div>
+      <h4 className="text-sm font-black text-white">{title}</h4>
+
+      <div className="mt-5 space-y-3">{children}</div>
+    </div>
+  );
+}
+
+function FooterLink({ to, children }) {
+  return (
+    <Link
+      to={to}
+      className="block w-fit text-sm text-white/50 transition duration-200 hover:translate-x-1 hover:text-blue-400"
+    >
+      {children}
+    </Link>
+  );
+}
+
+function SocialLink({ href, label, children }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/55 transition hover:-translate-y-1 hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-blue-400"
+    >
+      {children}
+    </a>
+  );
+}
+
+function ContactItem({ icon: Icon, href, text }) {
+  return (
+    <a
+      href={href}
+      className="flex items-center gap-3 text-sm text-white/50 transition hover:text-white"
+    >
+      <Icon className="shrink-0 text-blue-400" />
+
+      <span>{text}</span>
+    </a>
   );
 }
